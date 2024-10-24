@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductController extends Controller
 {
@@ -42,6 +43,16 @@ class ProductController extends Controller
         // Adicionar o caminho da imagem ao array de dados do produto
         $data['imagem'] = $path;
     }
+
+                // Validar a imagem
+                $request->validate([
+                    'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                ]);
+
+                // Fazer upload da imagem para o Cloudinary
+                $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecurePath();
+
+                return response()->json(['url' => $uploadedFileUrl]);
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
