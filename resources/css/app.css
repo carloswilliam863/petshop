@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input, textarea, select {
+    color: #000; /* Cor preta para o texto digitado */
+}
+
+/* Adicione isso ao seu CSS */
+.input-text {
+    color: black;
+}
