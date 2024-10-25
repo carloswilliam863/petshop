@@ -3,6 +3,17 @@
 @section('content')
     <h1>Adicionar Novo Cliente</h1>
 
+    <!-- Exibição de erros de validação -->
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('clientes.store') }}" method="POST">
         @csrf
 
