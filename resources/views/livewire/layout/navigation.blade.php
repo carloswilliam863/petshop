@@ -89,10 +89,14 @@ new class extends Component
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
-                <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
+        <div class="px-4">
+                <div class="font-medium text-base text-gray-800" 
+                    x-data="{ name: '{{ auth()->check() ? auth()->user()->name : 'Visitante' }}' }" 
+                    x-text="name" 
+                    x-on:profile-updated.window="name = $event.detail.name">
+                </div>
             </div>
+
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile')" wire:navigate>
