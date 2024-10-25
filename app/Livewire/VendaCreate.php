@@ -16,7 +16,7 @@ class VendaCreate extends Component
     public function mount()
     {
         $this->clientes = Cliente::all();
-        $this->produtos = Produto::all();
+        $this->produtos = Product::all();
         $this->productList[] = ['produto_id' => null, 'quantidade' => 1]; // Inicializa com um produto
     }
 

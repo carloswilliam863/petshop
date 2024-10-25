@@ -12,7 +12,7 @@ class ProductList extends Component
     public function mount()
     {
         // Carregar os produtos ao iniciar o componente
-        $this->$products = Product::all();
+        $this->products = Product::all();
         
     }
 
