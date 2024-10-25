@@ -16,6 +16,9 @@ class ClienteController extends Controller
     // Registrar um novo cliente
     public function store(Request $request)
     {
+
+        dd($request->all());
+        
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|unique:clientes,email',
