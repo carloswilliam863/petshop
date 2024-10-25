@@ -17,7 +17,6 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
         
         $request->validate([
             'nome' => 'required|string|max:255',
