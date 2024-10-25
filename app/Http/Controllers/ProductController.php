@@ -24,37 +24,38 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'nome' => 'required|string|max:255',
-        'categoria' => 'required|string|max:255',
-        'preco' => 'required|numeric',
-        'quantidadeEmEstoque' => 'required|integer',
-        'marca' => 'required|string|max:255',
-        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
-    ]);
-
-    $data = $request->all();
-
-    // Verificar se há uma imagem no request
-    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-        // Fazer upload da imagem para o Cloudinary
-        $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecurePath();
-
-
-
-
-        // Adicionar a URL da imagem ao array de dados do produto
-        $data['imagem'] = $uploadedFileUrl;
+    {
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'categoria' => 'required|string|max:255',
+            'preco' => 'required|numeric',
+            'quantidadeEmEstoque' => 'required|integer',
+            'marca' => 'required|string|max:255',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
+        ]);
+    
+        $data = $request->all();
+    
+        // Verificar se há uma imagem no request
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            try {
+                // Fazer upload da imagem para o Cloudinary usando o método store()
+                $uploadedFileUrl = Cloudinary::uploadFile($request->file('imagem')->store('temp'))->getSecurePath();
+                // Adicionar a URL da imagem ao array de dados do produto
+                $data['imagem'] = $uploadedFileUrl;
+            } catch (\Exception $e) {
+                // Retornar mensagem de erro se o upload falhar
+                return redirect()->route('products.index')->with('error', 'Erro ao fazer upload da imagem. ' . $e->getMessage());
+            }
+        }
+    
+        // Criar o produto no banco de dados
+        $product = Product::create($data);
+    
+        // Redirecionar para a página de listagem ou exibir mensagem de sucesso
+        return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
     }
-
-    // Criar o produto no banco de dados
-    $product = Product::create($data);
-
-    // Redirecionar para a página de listagem ou exibir mensagem de sucesso
-    return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
-}
-
+    
 
 
 
