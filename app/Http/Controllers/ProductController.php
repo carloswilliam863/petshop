@@ -31,28 +31,18 @@ class ProductController extends Controller
         'preco' => 'required|numeric',
         'quantidadeEmEstoque' => 'required|integer',
         'marca' => 'required|string|max:255',
-        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  // Validação da imagem
+        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
     ]);
 
     $data = $request->all();
 
-     // Verificar se há uma imagem no request
-     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-        // Armazenar a imagem na pasta 'produtos' no storage público
-        $path = $request->imagem->store('produtos', 'public');
-        // Adicionar o caminho da imagem ao array de dados do produto
-        $data['imagem'] = $path;
+    // Verificar se há uma imagem no request
+    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+        // Fazer upload da imagem para o Cloudinary
+        $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecurePath();
+        // Adicionar a URL da imagem ao array de dados do produto
+        $data['imagem'] = $uploadedFileUrl;
     }
-
-                // Validar a imagem
-                $request->validate([
-                    'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                ]);
-
-                // Fazer upload da imagem para o Cloudinary
-                $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecurePath();
-
-                return response()->json(['url' => $uploadedFileUrl]);
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
