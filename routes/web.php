@@ -31,17 +31,6 @@ Route::get('vendas/create', [VendaController::class, 'create'])->name('vendas.cr
 
 Route::post('vendas', [VendaController::class, 'store'])->name('vendas.store');
 
-// web.php
-Route::get('storage/images/imagens_produtos/{filename}', function ($filename) {
-    $path = storage_path('app/public/imagens_produtos/' . $filename);
-
-    if (!File::exists($path)) {
-        abort(404);
-    }
-
-    return response()->file($path);
-});
 
 
 
-require __DIR__.'/auth.php';
