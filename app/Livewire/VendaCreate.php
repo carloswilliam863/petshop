@@ -7,7 +7,7 @@ use App\Models\Product;
 use Livewire\Component;
 
 
-class Vendas extends Component
+class VendaCreate extends Component
 {
     public $clientes;
     public $produtos;
