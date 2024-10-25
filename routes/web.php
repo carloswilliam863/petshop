@@ -33,4 +33,4 @@ Route::post('vendas', [VendaController::class, 'store'])->name('vendas.store');
 
 
 
-
+require __DIR__.'/auth.php';

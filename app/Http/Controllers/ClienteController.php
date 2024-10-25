@@ -27,7 +27,7 @@ class ClienteController extends Controller
         ]);
 
         $cliente = Cliente::create($request->all());
-        return response()->json($cliente, 201);
+       
 
         return redirect()->route('clientes.index')->with('success', 'Cliente criado com sucesso!');
     }
