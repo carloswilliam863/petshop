@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'cloud_url' => env('CLOUDINARY_URL', null),
+    'cloud_url' => env('CLOUDINARY_URL'),
 ];
