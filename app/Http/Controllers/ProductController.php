@@ -24,32 +24,36 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'nome' => 'required|string|max:255',
-        'categoria' => 'required|string|max:255',
-        'preco' => 'required|numeric',
-        'quantidadeEmEstoque' => 'required|integer',
-        'marca' => 'required|string|max:255',
-        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
-    ]);
-
-    $data = $request->all();
-
-    // Verificar se há uma imagem no request
-    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-        // Fazer upload da imagem para o Cloudinary
-        $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecurePath();
-        // Adicionar a URL da imagem ao array de dados do produto
-        $data['imagem'] = $uploadedFileUrl;
-    }
-
-    // Criar o produto no banco de dados
-    $product = Product::create($data);
-
-    // Redirecionar para a página de listagem ou exibir mensagem de sucesso
-    return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
-}
+        {
+            $request->validate([
+                'nome' => 'required|string|max:255',
+                'categoria' => 'required|string|max:255',
+                'preco' => 'required|numeric',
+                'quantidadeEmEstoque' => 'required|integer',
+                'marca' => 'required|string|max:255',
+                'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
+            ]);
+            
+            $data = $request->all();
+            
+            // Verificar se há uma imagem no request
+            if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+                try {
+                    // Fazer upload da imagem para o Cloudinary usando uploadFile
+                    $uploadedFileUrl = Cloudinary::uploadFile($request->file('imagem')->getRealPath())->getSecurePath();
+                    // Adicionar a URL da imagem ao array de dados do produto
+                    $data['imagem'] = $uploadedFileUrl;
+                } catch (\Exception $e) {
+                    return redirect()->route('products.index')->with('error', 'Falha ao fazer upload da imagem.');
+                }
+            }
+            
+            // Criar o produto no banco de dados
+            $product = Product::create($data);
+            
+            // Redirecionar para a página de listagem ou exibir mensagem de sucesso
+            return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
+        }
 
 
 
