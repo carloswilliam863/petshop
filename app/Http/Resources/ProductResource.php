@@ -21,8 +21,7 @@ class ProductResource extends JsonResource
         'categoria' => $this->categoria,
         'preco' => $this->preco,
         'quantidadeEmEstoque' => $this->quantidadeEmEstoque,
-        'imagem' => $this->imagem ? Storage::url($this->imagem) : null,  // URL da imagem
-
+        'imagem' => $this->imagem,
         'marca' => $this->marca,
     ];
 }
