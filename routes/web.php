@@ -5,7 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'login');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
