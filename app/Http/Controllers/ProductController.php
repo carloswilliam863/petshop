@@ -39,21 +39,9 @@ class ProductController extends Controller
     $cloudinary = new Cloudinary();
 
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-        try {
-            $uploadedFile = $request->file('imagem');
-    
-            // Verifica se o arquivo enviado é válido
-            if ($uploadedFile->isValid()) {
-                // Faz upload da imagem e obtém a URL segura
                 $result = $cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
                 $data['imagem'] = $result;
-            } else {
-                return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
-            }
-        } catch (\Exception $e) {
-            \Log::error('Erro ao fazer upload da imagem: ' . $e->getMessage());
-            return back()->withErrors(['imagem' => 'Ocorreu um erro ao fazer o upload da imagem. Tente novamente mais tarde.']);
-        }
+         
     }
     
 
