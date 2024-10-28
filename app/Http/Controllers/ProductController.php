@@ -36,7 +36,7 @@ class ProductController extends Controller
 
     $data = $request->only(['nome', 'categoria', 'preco', 'quantidadeEmEstoque', 'marca']);
 
-    
+    $cloudinary = new Cloudinary();
 
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
         try {
