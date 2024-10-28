@@ -9,6 +9,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\VendaController;
 use App\Http\Controllers\PedidoEntradaController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 // Rotas Públicas (Sem Autenticação)
@@ -17,6 +18,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/products/count-by-brand', [ProductController::class, 'countByMarca']);
 Route::get('/products/count-by-category', [ProductController::class, 'countByCategory']);
 Route::get('/products/top-quantities', [ProductController::class, 'topQuantities']);
+Route::post('/upload', [ImageController::class, 'store']);
+
+
 
 
 // Rotas Protegidas (Requer Autenticação via Sanctum)
