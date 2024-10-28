@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
-use Cloudinary\Cloudinary; 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductController extends Controller
 {
@@ -36,10 +36,12 @@ class ProductController extends Controller
 
     $data = $request->only(['nome', 'categoria', 'preco', 'quantidadeEmEstoque', 'marca']);
 
-    $cloudinary = new Cloudinary();
 
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-                $result = $cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
+                $result = Cloudinary::upload($request->file('image')->getRealPath(), [
+                    'upload_preset' => 'ml_default',
+                ])->getSecurePath();
+
                 $data['imagem'] = $result;
          
     }
