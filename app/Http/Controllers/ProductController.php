@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Cloudinary\Cloudinary; 
 
 class ProductController extends Controller
 {
@@ -36,11 +36,16 @@ class ProductController extends Controller
 
     $data = $request->only(['nome', 'categoria', 'preco', 'quantidadeEmEstoque', 'marca']);
 
+    
+
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
         try {
             $uploadedFile = $request->file('imagem');
+    
+            // Verifica se o arquivo enviado é válido
             if ($uploadedFile->isValid()) {
-                $result = Cloudinary::upload($uploadedFile)->secure_url(); // Upload assíncrono e obtenção da URL segura
+                // Faz upload da imagem e obtém a URL segura
+                $result = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
                 $data['imagem'] = $result;
             } else {
                 return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
@@ -50,6 +55,7 @@ class ProductController extends Controller
             return back()->withErrors(['imagem' => 'Ocorreu um erro ao fazer o upload da imagem. Tente novamente mais tarde.']);
         }
     }
+    
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
