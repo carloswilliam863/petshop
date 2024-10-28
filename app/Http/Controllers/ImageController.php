@@ -14,9 +14,7 @@ class ImageController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath(), [
-            'upload_preset' => 'ml_default',
-        ])->getSecurePath();
+        $uploadedFileUrl = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         
 
         // Salve a URL no banco de dados ou use conforme necessário

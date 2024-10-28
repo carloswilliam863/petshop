@@ -38,9 +38,7 @@ class ProductController extends Controller
 
 
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-                $result = Cloudinary::upload($request->file('image')->getRealPath(), [
-                    'upload_preset' => 'ml_default',
-                ])->getSecurePath();
+                $result = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
 
                 $data['imagem'] = $result;
          
