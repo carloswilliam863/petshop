@@ -36,18 +36,24 @@ class ProductController extends Controller
 
     $data = $request->all();
 
+    $cloudinary = new Cloudinary();
 
-            $uploadedFileUrl = $cloudinary->upload($request->file('imagem')->getRealPath())->getSecureUrl();
-            // Adicionar a URL da imagem ao array de dados do produto
-            $data['imagem'] = $uploadedFileUrl;
-       
+    // Faz upload da imagem
+    $uploadedFileUrl = $cloudinary->upload($request->file('image')->getRealPath(), [
+        'folder' => 'uploads/images'
+    ]);
+
+    // Salva a URL da imagem no banco de dados ou retorna
+    return response()->json([
+        'url' => $uploadedFileUrl->getSecurePath(),
+    ]);
     
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
 
     // Redirecionar para a página de listagem ou exibir mensagem de sucesso
-    return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
+   // return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
 }
 
     
