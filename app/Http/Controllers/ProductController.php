@@ -40,7 +40,7 @@ class ProductController extends Controller
         try {
             $uploadedFile = $request->file('imagem');
             if ($uploadedFile->isValid()) {
-                $result = Cloudinary::uploadFile($uploadedFile)->secure_url(); // Upload assíncrono e obtenção da URL segura
+                $result = Cloudinary::uploadfile($uploadedFile)->secure_url(); // Upload assíncrono e obtenção da URL segura
                 $data['imagem'] = $result;
             } else {
                 return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
