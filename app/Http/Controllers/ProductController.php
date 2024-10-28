@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
-use Cloudinary\Cloudinary;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductController extends Controller
 {
