@@ -32,8 +32,10 @@ class AuthController extends Controller
     
         $user->addRole(3); // Adiciona o papel de Participante
     
-        $resource = new UserResource($user);
-        return $resource->response();
+        return response()->json([
+            'user' => new UserResource($user),
+            'token' => $token,
+        ], 201);
     }
     
 
