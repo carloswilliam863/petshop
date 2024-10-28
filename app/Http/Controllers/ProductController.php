@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Cloudinary\Cloudinary;
 
 class ProductController extends Controller
 {
@@ -31,25 +31,17 @@ class ProductController extends Controller
         'preco' => 'required|numeric',
         'quantidadeEmEstoque' => 'required|integer',
         'marca' => 'required|string|max:255',
-        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
     ]);
 
-    $data = $request->only(['nome', 'categoria', 'preco', 'quantidadeEmEstoque', 'marca']);
+    $data = $request->all();
 
-    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-        try {
-            $uploadedFile = $request->file('imagem');
-            if ($uploadedFile->isValid()) {
-                $result = Cloudinary::uploadfile($uploadedFile)->secure_url(); // Upload assíncrono e obtenção da URL segura
-                $data['imagem'] = $result;
-            } else {
-                return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
-            }
-        } catch (\Exception $e) {
-            \Log::error('Erro ao fazer upload da imagem: ' . $e->getMessage());
-            return back()->withErrors(['imagem' => 'Ocorreu um erro ao fazer o upload da imagem. Tente novamente mais tarde.']);
-        }
-    }
+
+            $uploadedFileUrl = $cloudinary->upload($request->file('imagem')->getRealPath())->getSecureUrl();
+            // Adicionar a URL da imagem ao array de dados do produto
+            $data['imagem'] = $uploadedFileUrl;
+       
+    
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
