@@ -39,8 +39,7 @@ class ProductController extends Controller
     // Verificar se há uma imagem no request
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             // Criar uma instância do Cloudinary
-            $cloudinary = new Cloudinary();
-            // Fazer upload da imagem para o Cloudinary
+
             $uploadedFileUrl = $cloudinary->upload($request->file('imagem')->getRealPath())->getSecureUrl();
             // Adicionar a URL da imagem ao array de dados do produto
             $data['imagem'] = $uploadedFileUrl;
