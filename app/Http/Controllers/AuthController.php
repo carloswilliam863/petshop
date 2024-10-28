@@ -33,11 +33,7 @@ class AuthController extends Controller
         $user->addRole(3); // Adiciona o papel de Participante
     
         $resource = new UserResource($user);
-        return $resource->response()
-            ->setStatusCode(201)
-            ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-            ->header('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
+        return $resource->response();
     }
     
 
