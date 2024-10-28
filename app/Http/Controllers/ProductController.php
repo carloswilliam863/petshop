@@ -45,7 +45,7 @@ class ProductController extends Controller
             // Verifica se o arquivo enviado é válido
             if ($uploadedFile->isValid()) {
                 // Faz upload da imagem e obtém a URL segura
-                $result = Cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
+                $result = $cloudinary::upload($uploadedFile->getRealPath())->getSecurePath();
                 $data['imagem'] = $result;
             } else {
                 return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
