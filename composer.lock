@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a1fe6e4808be204f47743825749bea3",
+    "content-hash": "598f2c6f1be0300739275907e8649a2e",
     "packages": [
         {
             "name": "brick/math",
@@ -206,6 +206,59 @@
                 "source": "https://github.com/cloudinary-community/cloudinary-laravel/tree/2.2.2"
             },
             "time": "2024-09-25T20:03:40+00:00"
+        },
+        {
+            "name": "cloudinary/cloudinary_cake_php",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_cake_php.git",
+                "reference": "51b9625683a17581cbb7124211b34e018709279a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_cake_php/zipball/51b9625683a17581cbb7124211b34e018709279a",
+                "reference": "51b9625683a17581cbb7124211b34e018709279a",
+                "shasum": ""
+            },
+            "require": {
+                "cloudinary/cloudinary_php": ">=1.0.8",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_cake_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary Cake PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_cake_php",
+            "keywords": [
+                "cake php",
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "support": {
+                "email": "info@cloudinary.com",
+                "issues": "https://github.com/cloudinary/cloudinary_cake_php/issues",
+                "source": "https://github.com/cloudinary/cloudinary_cake_php/tree/1.0.0"
+            },
+            "time": "2014-01-20T19:29:39+00:00"
         },
         {
             "name": "cloudinary/cloudinary_php",
