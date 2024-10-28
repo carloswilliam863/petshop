@@ -31,19 +31,21 @@ class ProductController extends Controller
         'preco' => 'required|numeric',
         'quantidadeEmEstoque' => 'required|integer',
         'marca' => 'required|string|max:255',
-        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
+        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
     $data = $request->all();
 
     // Verificar se há uma imagem no request
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-            // Criar uma instância do Cloudinary
-
-            $uploadedFileUrl = $cloudinary->upload($request->file('imagem')->getRealPath())->getSecureUrl();
+        try {
+            // Fazer upload da imagem para o Cloudinary
+            $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecureUrl();
             // Adicionar a URL da imagem ao array de dados do produto
             $data['imagem'] = $uploadedFileUrl;
-       
+        } catch (\Exception $e) {
+            return back()->withErrors(['imagem' => 'Erro ao fazer upload da imagem: ' . $e->getMessage()]);
+        }
     }
 
     // Criar o produto no banco de dados
