@@ -34,17 +34,20 @@ class ProductController extends Controller
         'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    $data = $request->all();
+    $data = $request->only(['nome', 'categoria', 'preco', 'quantidadeEmEstoque', 'marca']);
 
-    // Verificar se há uma imagem no request
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
         try {
-            // Fazer upload da imagem para o Cloudinary
-            $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecureUrl();
-            // Adicionar a URL da imagem ao array de dados do produto
-            $data['imagem'] = $uploadedFileUrl;
+            $uploadedFile = $request->file('imagem');
+            if ($uploadedFile->isValid()) {
+                $result = Cloudinary::upload($uploadedFile)->secure_url(); // Upload assíncrono e obtenção da URL segura
+                $data['imagem'] = $result;
+            } else {
+                return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
+            }
         } catch (\Exception $e) {
-            return back()->withErrors(['imagem' => 'Erro ao fazer upload da imagem: ' . $e->getMessage()]);
+            \Log::error('Erro ao fazer upload da imagem: ' . $e->getMessage());
+            return back()->withErrors(['imagem' => 'Ocorreu um erro ao fazer o upload da imagem. Tente novamente mais tarde.']);
         }
     }
 
