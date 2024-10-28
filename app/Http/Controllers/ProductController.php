@@ -34,26 +34,28 @@ class ProductController extends Controller
         'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
     ]);
 
-    $data = $request->all();
+    $data = $request->only(['nome', 'categoria', 'preco', 'quantidadeEmEstoque', 'marca']);
 
-    $cloudinary = new Cloudinary();
-
-    // Faz upload da imagem
-    $uploadedFileUrl = $cloudinary->upload($request->file('image')->getRealPath(), [
-        'folder' => 'uploads/images'
-    ]);
-
-    // Salva a URL da imagem no banco de dados ou retorna
-    return response()->json([
-        'url' => $uploadedFileUrl->getSecurePath(),
-    ]);
-    
+    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+        try {
+            $uploadedFile = $request->file('imagem');
+            if ($uploadedFile->isValid()) {
+                $result = Cloudinary::upload($uploadedFile)->secure_url(); // Upload assíncrono e obtenção da URL segura
+                $data['imagem'] = $result;
+            } else {
+                return back()->withErrors(['imagem' => 'O arquivo de imagem enviado é inválido.']);
+            }
+        } catch (\Exception $e) {
+            \Log::error('Erro ao fazer upload da imagem: ' . $e->getMessage());
+            return back()->withErrors(['imagem' => 'Ocorreu um erro ao fazer o upload da imagem. Tente novamente mais tarde.']);
+        }
+    }
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
 
     // Redirecionar para a página de listagem ou exibir mensagem de sucesso
-   // return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
+    return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
 }
 
     
