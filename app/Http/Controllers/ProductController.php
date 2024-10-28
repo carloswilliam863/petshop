@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Cloudinary\Cloudinary;
 
 class ProductController extends Controller
 {
@@ -24,37 +24,39 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'categoria' => 'required|string|max:255',
-            'preco' => 'required|numeric',
-            'quantidadeEmEstoque' => 'required|integer',
-            'marca' => 'required|string|max:255',
-            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
-        ]);
-    
-        $data = $request->all();
-    
-        // Verificar se há uma imagem no request
-            if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-                try {
-                    // Fazer upload da imagem para o Cloudinary
-                    $uploadedFileUrl = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecureUrl();
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'categoria' => 'required|string|max:255',
+        'preco' => 'required|numeric',
+        'quantidadeEmEstoque' => 'required|integer',
+        'marca' => 'required|string|max:255',
+        'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validação da imagem
+    ]);
 
-                    // Adicionar a URL da imagem ao array de dados do produto
-                    $data['imagem'] = $uploadedFileUrl;
-                } catch (\Exception $e) {
-                    return back()->withErrors(['imagem' => 'Erro ao fazer upload da imagem: ' . $e->getMessage()]);
-                }
-            }
-    
-        // Criar o produto no banco de dados
-        $product = Product::create($data);
-    
-        // Redirecionar para a página de listagem ou exibir mensagem de sucesso
-        return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
+    $data = $request->all();
+
+    // Verificar se há uma imagem no request
+    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+        try {
+            // Criar uma instância do Cloudinary
+            $cloudinary = new Cloudinary();
+            // Fazer upload da imagem para o Cloudinary
+            $uploadedFileUrl = $cloudinary->upload($request->file('imagem')->getRealPath())->getSecureUrl();
+            // Adicionar a URL da imagem ao array de dados do produto
+            $data['imagem'] = $uploadedFileUrl;
+        } catch (\Exception $e) {
+            return back()->withErrors(['imagem' => 'Erro ao fazer upload da imagem: ' . $e->getMessage()]);
+        }
     }
+
+    // Criar o produto no banco de dados
+    $product = Product::create($data);
+
+    // Redirecionar para a página de listagem ou exibir mensagem de sucesso
+    return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
+}
+
     
 
 
