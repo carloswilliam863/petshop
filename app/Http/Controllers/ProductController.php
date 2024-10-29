@@ -6,7 +6,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductController extends Controller
 {
@@ -38,9 +37,14 @@ class ProductController extends Controller
 
 
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-                $result = Cloudinary::upload($request->file('imagem')->getRealPath())->getSecurePath();
+                // Faz o upload do arquivo para o S3
+            $path = Storage::disk('s3')->put('images', $request->file('imagem'));
 
-                $data['imagem'] = $result;
+            // Obtenha a URL do arquivo no S3
+            $url = Storage::disk('s3')->url($path);
+
+
+                $data['imagem'] = $url;
          
     }
     
