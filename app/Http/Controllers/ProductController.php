@@ -52,11 +52,12 @@ class ProductController extends Controller
     // Criar o produto no banco de dados
     $product = Product::create($data);
 
-    // Redirecionar para a página de listagem ou exibir mensagem de sucesso
-    return response()->json([
-        'message' => 'Produto criado com sucesso!',
-        'redirect' => route('products.index'),
-    ], 201);
+    
+    if ($request->wantsJson()) {
+        return response()->json(['message' => 'Produto criado com sucesso!']);
+    }
+    
+    return redirect()->route('products.index')->with('success', 'Produto criado com sucesso!');
     
 }
 
