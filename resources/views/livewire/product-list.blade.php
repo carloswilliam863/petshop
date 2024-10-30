@@ -9,7 +9,8 @@
                 <div class="card h-100 shadow d-flex flex-row align-items-center p-2" style="background-color: #c19cc1;">
                     <!-- Imagem do Produto à Esquerda -->
                     <div class="flex-shrink-0" style="margin-right: 15px;">
-                        <img src="{{ asset('storage/' . $product->imagem) }}" class="img-fluid" alt="Imagem do produto" style="width: 50px; height: 50px;">
+                    <img src="{{ Storage::disk('s3')->url($product->imagem) }}" class="img-fluid" alt="Imagem do produto" style="width: 50px; height: 50px;">
+
                     </div>
 
                     <!-- Conteúdo do Produto -->

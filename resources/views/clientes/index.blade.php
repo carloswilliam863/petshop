@@ -1,7 +1,9 @@
-@extends('layouts.app') <!-- Ou seu layout principal -->
+@extends('layouts.app')
 
 
 
 @section('content')
-        <livewire:client-list />
+<livewire:client-list />
+
 @endsection
+

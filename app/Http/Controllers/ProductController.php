@@ -121,14 +121,18 @@ class ProductController extends Controller
 
     public function index()
         {
-            $products = Product::all(); // Substitua 'Product' pelo seu modelo de produto
+            $products = Product::all(); 
             return view('livewire.product-list', compact('products'));
         }
 
         public function create()
     {
-        return view('products.create'); // Certifique-se de que a view 'products.create' existe
+        return view('products.create'); 
     }
+
+
+
+
 
     // Contar produtos da marca
     public function countByMarca()

@@ -21,11 +21,14 @@ Route::get('/products/create', [ProductController::class, 'create'])->name('prod
 
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+Route::get('/clientes', function () {
+    return view('clientes.index');
+})->name('clientes.index');
+
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
 
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');  // Salvar novo cliente
+Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');  
 
 Route::get('vendas/create', [VendaController::class, 'create'])->name('vendas.create');
 

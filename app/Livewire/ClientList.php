@@ -18,11 +18,10 @@ class ClientList extends Component
     {
         $this->clientes = Cliente::all();
     }
-
     public function deleteCliente($id)
     {
         Cliente::find($id)->delete();
-        $this->loadClientes(); // Recarregar a lista após a exclusão
+        $this->loadClientes(); 
     }
 
     public function render()
