@@ -8,7 +8,7 @@ use App\Models\Cliente;
 class ClientList extends Component
 {
     public $clientes;
-
+    
     public function mount()
     {
         $this->loadClientes();
