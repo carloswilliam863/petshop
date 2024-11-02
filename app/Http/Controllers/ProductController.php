@@ -86,17 +86,17 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $data = $request->all();
 
-        // Salvar a imagem, se existir
-        if ($request->hasFile('imagem')) {
-            // Apagar a imagem antiga, se existir
-            if ($product->imagem) {
-                Storage::disk('public')->delete($product->imagem);
-            }
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            // Faz o upload do arquivo para o S3
+        $path = Storage::disk('s3')->put('images', $request->file('imagem'));
 
-            $imagePath = $request->file('imagem')->store('imagens_produtos', 'public');
-            $data['imagem'] = $imagePath;
-        }
+        // Obtenha a URL do arquivo no S3
+        $url = Storage::disk('s3')->url($path);
 
+
+        $data['imagem'] = $url;
+     
+}
         $product->update($data);
 
         return response()->json($product, 200);
