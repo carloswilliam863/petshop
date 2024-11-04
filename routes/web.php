@@ -34,6 +34,8 @@ Route::get('vendas/create', [VendaController::class, 'create'])->name('vendas.cr
 
 Route::post('vendas', [VendaController::class, 'store'])->name('vendas.store');
 
-
+//
+Route::get('/products/low-stock', [ProductController::class, 'lowStock']);
+//
 
 require __DIR__.'/auth.php';

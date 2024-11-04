@@ -169,6 +169,15 @@ class ProductController extends Controller
     return response()->json(['produtos' => $produtos]);
 }
 
+
+public function lowStock(Request $request)
+{
+    $limit = $request->input('limit', 10); // Define o limite padrão como 10
+    $products = Product::where('stock', '<', $limit)->get();
+
+    return response()->json($products);
+}
+
 }
 
     
