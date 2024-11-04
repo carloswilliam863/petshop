@@ -16,6 +16,7 @@ class RoleSeeder extends Seeder
             ['id' => 1, 'title' => 'Administrador'],
             ['id' => 2, 'title' => 'Palestrante'],
             ['id' => 3, 'title' => 'Participante'],
+            ['id' => 4, 'title' => 'Administrador 2']
         ]);
 
         // Role::create(['id' => 1, 'title' => 'Administrador']);
