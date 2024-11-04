@@ -9,12 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('pedido_entradas', function (Blueprint $table) {
-            //
-        });
-    }
+    public function up()
+{
+    Schema::table('nome_da_tabela', function (Blueprint $table) {
+        $table->renameColumn('fornecedor', 'marca');
+    });
+}
 
     /**
      * Reverse the migrations.
