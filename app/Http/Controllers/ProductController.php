@@ -170,6 +170,7 @@ class ProductController extends Controller
 }
 
 
+/*
 public function lowStock(Request $request)
 {
     $limit = $request->input('limit', 10); // Define o limite padrão como 10
@@ -177,6 +178,7 @@ public function lowStock(Request $request)
 
     return response()->json($products);
 }
+*/
 
 }
 
