@@ -45,11 +45,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
 
     // Rotas para Clientes
-    Route::get('/clientes', [ClienteController::class, 'indexi']);
-    Route::post('/clientes', [ClienteController::class, 'store']);
-    Route::get('/clientes/{id}', [ClienteController::class, 'show']);
-    Route::put('/clientes/{id}', [ClienteController::class, 'update']);
-    Route::delete('/clientes/{id}', [ClienteController::class, 'destroy']);
+    Route::get('/clients', [ClienteController::class, 'indexi']);
+    Route::post('/clients', [ClienteController::class, 'store']);
+    Route::get('/clients/{id}', [ClienteController::class, 'show']);
+    Route::put('/clients/{id}', [ClienteController::class, 'update']);
+    Route::delete('/clients/{id}', [ClienteController::class, 'destroy']);
    
 
     Route::post('/vendas', [VendaController::class, 'store']);
