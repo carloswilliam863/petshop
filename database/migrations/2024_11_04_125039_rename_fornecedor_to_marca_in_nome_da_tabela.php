@@ -19,11 +19,11 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::table('pedido_entradas', function (Blueprint $table) {
-            //
-        });
-    }
+    public function down()
+{
+    Schema::table('nome_da_tabela', function (Blueprint $table) {
+        $table->renameColumn('marca', 'fornecedor');
+    });
+}
 
 };
