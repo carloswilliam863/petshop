@@ -21,15 +21,6 @@ Route::get('/products/create', [ProductController::class, 'create'])->name('prod
 
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-Route::get('/clientes', function () {
-    return view('clientes.index'); // Nome do arquivo Blade
-})->name('clientes.index');  
-
-
-Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
-
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');  
-
 Route::get('vendas/create', [VendaController::class, 'create'])->name('vendas.create');
 
 Route::post('vendas', [VendaController::class, 'store'])->name('vendas.store');
