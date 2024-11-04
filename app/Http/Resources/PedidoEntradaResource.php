@@ -20,4 +20,19 @@ class PedidoEntradaResource extends JsonResource
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }
+
+    /* $array = [
+        'id' => 1,
+        'marca' => 'Marca Exemplo',
+        'quantidade' => 100,
+        'produto' => [
+            'nome' => 'Produto Exemplo',
+            'categoria' => 'Categoria Exemplo',
+            'preco' => 50.00,
+        ],
+        'created_at' => date('Y-m-d H:i:s'),
+    ];
+    
+    print_r($array);*/
+    
 }
