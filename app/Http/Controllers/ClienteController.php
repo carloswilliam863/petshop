@@ -30,7 +30,14 @@ class ClienteController extends Controller
 
         $cliente = Cliente::create($request->all());
 
-        return response()->json(['message' => 'Cliente criado com sucesso!'], 201);
+        if ($request->wantsJson()) {
+            // Retorna uma resposta em JSON se a solicitação é para API (ex: usando Insomnia)
+            return response()->json(['message' => 'Cliente criado com sucesso!', 'cliente' => $cliente], 201);
+        }
+       
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente criado com sucesso!');
+    }
 
     }
 
