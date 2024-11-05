@@ -182,6 +182,8 @@ public function lowStock(Request $request)
 
 }
 
+
+
     
 
 
