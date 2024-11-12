@@ -46,4 +46,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'roles_users', 'user_id', 'role_id')->withTimestamps();
+    }
+
+    public function addRole($id)
+    {
+        // Previne a repetição
+        $this->roles()->syncWithoutDetaching([$id]);
+    }
+
+    public function removeRole($id)
+    {
+        $this->roles()->detach($id);
+    }
 }
+
+
+
