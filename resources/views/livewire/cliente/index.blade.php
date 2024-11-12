@@ -35,7 +35,6 @@
                                         <th class="px-6 py-3 border-b text-left">Estado Civil</th>
                                         <th class="px-6 py-3 border-b text-left">Gênero</th>
                                         <th class="px-6 py-3 border-b text-left">Pets</th>
-                                        <th class="px-6 py-3 border-b text-left">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-sm text-gray-800">
@@ -49,10 +48,6 @@
                                             <td class="px-6 py-3 border-b">{{ $cliente->estado_civil }}</td>
                                             <td class="px-6 py-3 border-b">{{ $cliente->genero }}</td>
                                             <td class="px-6 py-3 border-b">{{ $cliente->pets }}</td>
-                                            <td class="px-6 py-3 border-b">
-                                                <button class="text-purple-500 hover:text-purple-700 font-semibold">Editar</button>
-                                                <button class="text-red-500 hover:text-red-700 font-semibold ml-2">Deletar</button>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
