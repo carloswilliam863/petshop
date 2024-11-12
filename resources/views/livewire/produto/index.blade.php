@@ -17,9 +17,10 @@
                                 <div class="col-md-12 mb-4">
                                     <div class="card h-100 shadow-lg flex flex-row items-center p-4 rounded-lg bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500">
                                         
-                                          <div class="flex-shrink-0 w-1/3 h-full">
-                                            <img src="{{ $product->Imagem }}" alt="Imagem de {{ $product->nome }}" class="w-full h-full object-cover">
-                                        </div>
+                                          <!-- Imagem do Produto -->
+                                            <div class="flex-shrink-0" style="width: 80px; height: 80px; background-color: #f3f3f3;">
+                                                <img src="{{ $product->imagem }}" alt="Imagem de {{ $product->nome }}" class="w-full h-full object-contain">
+                                            </div>
 
 
 
