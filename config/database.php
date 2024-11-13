@@ -42,35 +42,21 @@ return [
             'synchronous' => null,
         ],
 
-<<<<<<< HEAD
-       'mysql' => [
-    'driver' => 'mysql',
-    'host' => env('DB_HOST', '127.0.0.1'),
-    'port' => env('DB_PORT', '3306'),
-    'database' => env('DB_DATABASE', 'nome_do_banco_local'),
-    'username' => env('DB_USERNAME', 'seu_usuario'),
-    'password' => env('DB_PASSWORD', 'sua_senha'),
-    'charset' => 'utf8mb4',
-    'collation' => 'utf8mb4_unicode_ci',
-    'prefix' => '',
-    'strict' => true,
-    'engine' => null,
-    ],
-=======
-        'mysql' => [
+
+            'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', parse_url(env('JAWSDB_URL'), PHP_URL_HOST) ?? '127.0.0.1'),
-            'port' => env('DB_PORT', parse_url(env('JAWSDB_URL'), PHP_URL_PORT) ?? '3306'),
-            'database' => env('DB_DATABASE', ltrim(parse_url(env('JAWSDB_URL'), PHP_URL_PATH), '/') ?? 'nome_do_banco_local'),
-            'username' => env('DB_USERNAME', parse_url(env('JAWSDB_URL'), PHP_URL_USER) ?? 'seu_usuario'),
-            'password' => env('DB_PASSWORD', parse_url(env('JAWSDB_URL'), PHP_URL_PASS) ?? 'sua_senha'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'nome_do_banco_local'),
+            'username' => env('DB_USERNAME', 'seu_usuario'),
+            'password' => env('DB_PASSWORD', 'sua_senha'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ],
->>>>>>> 3cff1ebb66d103ec980f4f636cc22d5338b2061d
+            ],
+
 
 
         'mariadb' => [
