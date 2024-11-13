@@ -13,11 +13,9 @@
                     <div class="container">
                         <!-- Botão de Adicionar Produto no topo -->
                         <div class="mb-4">
-<<<<<<< HEAD
+
                             <a href="{{ route('products.create') }}" class="px-6 py-3 bg-purple-900 text-white text-lg font-semibold rounded-lg hover:bg-purple-700 transition duration-300">
-=======
-                            <a href="{{ route('products.create') }}" class="px-6 py-3 bg-purple-600 text-white text-lg font-semibold rounded-lg hover:bg-purple-700 transition duration-300">
->>>>>>> 3cff1ebb66d103ec980f4f636cc22d5338b2061d
+
                                 Adicionar Novo Produto
                             </a>
                         </div>
@@ -26,18 +24,13 @@
                         <div class="row mt-4">
                             @foreach($products as $product)
                                 <div class="col-md-12 mb-4">
-<<<<<<< HEAD
+
                                              <div class="card h-100 shadow-lg flex flex-row items-center p-4 rounded-lg" style="background-color: #6b46c1 !important;">
 
                                         
                                         <!-- Imagem do Produto -->
                                         <div class="flex-shrink-0" style="width: 80px; height: 80px;">
-=======
-                                    <div class="card h-100 shadow-lg flex flex-row items-center p-4 rounded-lg bg-gradient-to-r from-purple-700 via-purple-600 to-purple-500">
-                                        
-                                        <!-- Imagem do Produto -->
-                                        <div class="flex-shrink-0" style="width: 80px; height: 80px; background-color: #f3f3f3;">
->>>>>>> 3cff1ebb66d103ec980f4f636cc22d5338b2061d
+
                                             <img src="{{ $product->imagem }}" alt="Imagem de {{ $product->nome }}" class="w-full h-full object-contain">
                                         </div>
 
