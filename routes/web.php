@@ -8,7 +8,7 @@ use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', 'login');
+Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -29,8 +29,6 @@ Route::get('pedidos/create', App\Livewire\Pedido\Create::class)->name('pedidos.c
 Route::post('pedidos', [PedidoEntradaController::class, 'store'])->name('pedidos.store');
 
 
-
-
 Route::get('/produtos', App\Livewire\Produto\Index::class)-> name('produtos');
 
 Route::get('/produtos/create', App\Livewire\Produto\Create::class)->name('products.create');
@@ -48,3 +46,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+
+
+
+
