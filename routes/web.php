@@ -8,7 +8,9 @@ use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view('/', 'welcome');
+Route::get('/', function () {
+    return redirect('login');
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
