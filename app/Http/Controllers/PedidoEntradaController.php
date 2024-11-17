@@ -26,9 +26,9 @@ class PedidoEntradaController extends Controller
         $produto->quantidadeEmEstoque += $request->quantidade; 
         $produto->save();
 
-        //return new PedidoEntradaResource($pedidoEntrada);
+        return new PedidoEntradaResource($pedidoEntrada);
 
-        return redirect()->route('produtos')->with('success', 'Venda realizada com sucesso!');
+        //return redirect()->route('produtos')->with('success', 'Venda realizada com sucesso!');
     }
 
     public function show($id)
@@ -48,5 +48,12 @@ class PedidoEntradaController extends Controller
 
     return view('pedidos.create', compact('produtos'));
 }
+
+    // Deletar um Pedido
+    public function destroy($id)
+        {
+            PedidoEntrada::destroy($id);
+            return response()->json(['message' => 'Produto deletado com sucesso'], 200);
+        }
 
 }

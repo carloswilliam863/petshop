@@ -26,8 +26,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Rotas para Usuários
     Route::get('/users', [AuthController::class, 'index']);
-    Route::get('/users/{id}', [AuthController::class, 'show']);
-    Route::put('/users/{id}', [AuthController::class, 'update']);
     Route::delete('/users/{id}', [AuthController::class, 'destroy']);
 
     // Rotas para Produtos
@@ -44,16 +42,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/clientes', [ClienteController::class, 'indexi']);
     Route::post('/clientes', [ClienteController::class, 'store']);
     Route::get('/clientes/{id}', [ClienteController::class, 'show']);
-    Route::put('/clientes/{id}', [ClienteController::class, 'update']);
+    Route::match(['patch', 'put'], '/clientes/{id}' ,[ClienteController::class, 'update']);
     Route::delete('/clientes/{id}', [ClienteController::class, 'destroy']);
    
 
     Route::post('/vendas', [VendaController::class, 'store']);
     Route::get('/vendas/{id}', [VendaController::class, 'show']);
+    Route::delete('/vendas/{id}', [VendaController::class, 'destroy']);
     
     
     Route::get('/pedido-entradas', [PedidoEntradaController::class, 'index']);
     Route::post('/pedido-entradas', [PedidoEntradaController::class, 'store']);
     Route::get('/pedido-entradas/{id}', [PedidoEntradaController::class, 'show']);
+    Route::delete('/pedido-entradas/{id}', [PedidoEntradaController::class, 'destroy']);
 
 });
+
+
+
+

@@ -54,8 +54,8 @@ class VendaController extends Controller
     // Atualiza o total vendido
     $venda->update(['total_vendido' => $totalVendido]);
 
-    //return new VendaResource($venda->load('cliente', 'products'));
-    return redirect()->route('produtos')->with('success', 'Venda realizada com sucesso!');
+    return new VendaResource($venda->load('cliente', 'products'));
+    //return redirect()->route('produtos')->with('success', 'Venda realizada com sucesso!');
 
 }
 
@@ -68,11 +68,18 @@ class VendaController extends Controller
 
 
  public function create()
-{
-    $clientes = Cliente::all();
-    $produtos = Product::all();
+    {
+        $clientes = Cliente::all();
+        $produtos = Product::all();
 
-    return view('vendas.create', compact('clientes', 'produtos'));
+        return view('vendas.create', compact('clientes', 'produtos'));
+    }
+
+    // Deletar uma venda
+    public function destroy($id)
+{
+    Venda::destroy($id);
+    return response()->json(['message' => 'Produto deletado com sucesso'], 200);
 }
 
 

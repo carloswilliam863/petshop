@@ -52,12 +52,13 @@ class ProductController extends Controller
     // Criar o produto no banco de dados
     $product = Product::create($data);
 
+    return response()->json($product, 200);
     
-    if ($request->wantsJson()) {
+    /*if ($request->wantsJson()) {
         return response()->json(['message' => 'Produto criado com sucesso!']);
     }
     
-    return redirect()->route('produtos')->with('success', 'Produto criado com sucesso!');
+    return redirect()->route('produtos')->with('success', 'Produto criado com sucesso!');*/
     
 }
 
@@ -81,6 +82,7 @@ class ProductController extends Controller
             'preco' => 'numeric',
             'quantidadeEmEstoque' => 'integer',
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+            'marca' => 'required|string|max:255',
         ]);
 
         $product = Product::findOrFail($id);
@@ -105,10 +107,10 @@ class ProductController extends Controller
 
     // Deletar um produto
     public function destroy($id)
-    {
-        Product::destroy($id);
-        return response()->json(null, 204);
-    }
+{
+    Product::destroy($id);
+    return response()->json(['message' => 'Produto deletado com sucesso'], 200);
+}
 
     // Atualizar o preço de um produto
     public function atualizarPreco(Request $request, $id)
@@ -119,20 +121,7 @@ class ProductController extends Controller
         return new ProductResource($product); 
     }
 
-    public function index()
-        {
-            $products = Product::all(); 
-            return view('livewire.product-list', compact('products'));
-        }
-
-        public function create()
-    {
-        return view('products.create'); 
-    }
-
-
-
-
+    
 
     // Contar produtos da marca
     public function countByMarca()

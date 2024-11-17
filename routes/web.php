@@ -8,9 +8,14 @@ use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
+
+
+Route::view('/', 'welcome');
+
+//caso nao de certo o WELCOME, tirar os comentarios, para aparecer diretro a page de login
+/*Route::get('/', function () {
     return redirect('login');
-});
+});*/
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
