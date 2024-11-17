@@ -54,8 +54,8 @@ class VendaController extends Controller
     // Atualiza o total vendido
     $venda->update(['total_vendido' => $totalVendido]);
 
-    return new VendaResource($venda->load('cliente', 'products'));
-    //return redirect()->route('produtos')->with('success', 'Venda realizada com sucesso!');
+    //return new VendaResource($venda->load('cliente', 'products'));
+    return redirect()->route('produtos')->with('success', 'Venda realizada com sucesso!');
 
 }
 

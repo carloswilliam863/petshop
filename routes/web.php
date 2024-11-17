@@ -13,15 +13,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 //caso nao de certo o WELCOME, tirar os comentarios, para aparecer diretro a page de login
-<<<<<<< HEAD
-/*Route::get('/', function () {
-    return redirect('login');
-});*/
-=======
 //Route::get('/', function () {
    // return redirect('login');
 //});
->>>>>>> 2fe7042aa57d6d89d9e61c580c76690aa88acb29
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

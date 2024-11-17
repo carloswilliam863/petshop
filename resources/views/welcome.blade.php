@@ -44,8 +44,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 100%;
-            padding: 10px 20px;
+            width: 80%;
+            padding: 10px 250%;
             position: fixed;
             top: 0;
             background-color: #50285b; 
@@ -101,7 +101,7 @@
 
         .text-content {
             flex-basis: 50%;
-            max-width: 500px;
+            max-width: 800px;
         }
 
 
@@ -118,11 +118,11 @@
         }
 
         .logo-transparent {
-            width: 500px; /* Ajuste o tamanho conforme necessário */
-            opacity: 0.4; /* Ajuste a transparência, 1 é totalmente opaco e 0 é totalmente transparente */
+            width: 600px; /* Ajuste o tamanho conforme necessário */
+            opacity: 1; /* Ajuste a transparência, 1 é totalmente opaco e 0 é totalmente transparente */
             position: absolute; /* Para posicionar sobre o navbar */
-            top: 190px; /* Ajuste a posição conforme necessário */
-            left: 700px; /* Ajuste a posição conforme necessário */
+            top: 300px; /* Ajuste a posição conforme necessário */
+            left: 1000px; /* Ajuste a posição conforme necessário */
         }
 
 
@@ -141,9 +141,9 @@
     </div>
     <div class="content-container">
         <div class="text-content">
-            <h1 style="font-size: 45px; font-weight: bold; color: #ffffff;">Gatito Petshop cuidados que seu pet merece.</h1>
+            <h1 style="font-size: 65px; font-weight: bold; color: #ffffff;">Gatito Petshop cuidados que seu pet merece.</h1>
             <p style="font-size: 1.2rem; color: #ffffff;">
-                Oferecemos os melhores produtos e serviços para o bem-estar do seu animal de estimação.
+                Oferecemos os melhores produtos e serviços <br> para o bem-estar do seu animal de estimação.
             </p>
         </div>
     </div>
