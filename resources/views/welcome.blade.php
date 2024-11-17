@@ -7,12 +7,14 @@
     <title>Gatito Petshop</title>
     <link rel="icon" href="{{ asset('images/gatito.png') }}" alt="Logo Gatito">
 
+   
+    
     <style>
         body {
             position: relative;
             background: url('{{ asset('images/animais.png') }}') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
+            background-size: 105% auto;
+            background-color: pink;
             font-family: Arial, sans-serif;
             margin: 0;
             display: flex;
@@ -30,12 +32,24 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(80, 40, 90, 0.8); /* Ajuste o tom roxo e a transparência conforme necessário */
+            background-color: rgba(26, 17, 28, 0.38); /* Ajuste o tom e a transparência conforme necessário */
             z-index: 1;
+        }
+
+        .rodape {
+            height: 35px; /* Altura fixa de 10px */
+            background-color: #50285b; /* Cor do rodapé */
+            width: 100%; /* Largura total da página */
+            position: fixed; /* Fixa o rodapé no final da página */
+            bottom: 0; /* Alinha ao fundo */
+            left: 0; /* Garante que comece na borda esquerda */
+            z-index: 2; 
         }
 
         .header,
         .content-container {
+            padding: 200px
+            width:200px ;
             position: relative;
             z-index: 2; /* Garante que o texto esteja acima da sobreposição */
         }
@@ -89,43 +103,32 @@
         }
 
         .content-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            width: 100%;
-            z-index: 10;
-            padding: 80px 20px;
-            box-sizing: border-box;
-        }
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    max-width: 1200px;
+    width: 100%;
+    z-index: 10;
+    padding: 80px 20px;
+    box-sizing: border-box;
+    position: relative; /* Permite posicionamento dentro da content-container */
+}
 
-        .text-content {
-            flex-basis: 50%;
-            max-width: 800px;
-        }
+.text-content {
+    flex-basis: 50%;
+    max-width: 800px;
+    text-align: center; /* Centraliza o texto dentro do contêiner */
+}
 
+/* Ajustando a logo para centralizar dentro da content-container */
+.logo-center {
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+    opacity: 1; /* Ajuste a transparência */
+    display: block; /* Para remover qualquer alinhamento estranho */
+    margin: 0 auto; /* Centraliza a imagem */
+}
 
-        @media (max-width: 768px) {
-            .content-container {
-                flex-direction: column;
-                text-align: center;
-                padding: 20px;
-            }
-
-            .text-content {
-                max-width: 100%;
-            }
-        }
-
-        .logo-transparent {
-            width: 600px; /* Ajuste o tamanho conforme necessário */
-            opacity: 1; /* Ajuste a transparência, 1 é totalmente opaco e 0 é totalmente transparente */
-            position: absolute; /* Para posicionar sobre o navbar */
-            top: 300px; /* Ajuste a posição conforme necessário */
-            left: 1000px; /* Ajuste a posição conforme necessário */
-        }
-
-
+                
     </style>
 </head>
 
@@ -141,19 +144,40 @@
     </div>
     <div class="content-container">
         <div class="text-content">
-            <h1 style="font-size: 65px; font-weight: bold; color: #ffffff;">Gatito Petshop cuidados que seu pet merece.</h1>
-            <p style="font-size: 1.2rem; color: #ffffff;">
-                Oferecemos os melhores produtos e serviços <br> para o bem-estar do seu animal de estimação.
-            </p>
-        </div>
-    </div>
-    <div class="navbar-brand">
-        <a href="/">
-            <img src="{{ asset('images/gatito.png') }}" alt="Logo Gatito" class="logo-transparent">
-        </a>
-    </div>
-
+            
     
+
+                    <!-- Adicionando fonte Oswald do Google Fonts -->
+            <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+            <div class="text-content" style="text-align: center;">
+
+                <h1 style="font-size: 80px; font-weight: bolder; color: #fff; font-family: 'Oswald', sans-serif; letter-spacing: 4px;">
+                    Gatito Petshop
+                </h1>
+            
+                <img src="{{ asset('images/gatito.png') }}" alt="Logo Gatito" class="logo-center">
+            
+            </div>
+            
+            <p style="font-size: 1.2rem; color: #ffffff; text-align: justify; font-weight: 900" >
+                No <strong style="font-weight:900; color: #3e0056">Gatito Petshop</strong> garantimos que todos os produtos essenciais para seu pet estejam sempre disponíveis. <br>
+                Com um sistema de <strong style="font-weight:900; color: #3e0056">gestão de estoque</strong>, monitoramos itens como rações, brinquedos e acessórios, para oferecer um atendimento rápido e eficiente. <br>
+                <br> 
+                <p1 style="font-weight:900">Nossa prioridade é a qualidade e a agilidade, mantendo o estoque sempre atualizado para o bem-estar do seu animal.</p1>
+            </p>
+            
+            
+            
+        </div>
+      </div>
+    <!--<div class="navbar-brand">
+        <a href="/">
+            <img src="{{ asset('images/gatito.png') }}" alt="Logo Gatito" class="logo-center">
+        </a>
+    </div>  -->
+
 </body>
+
+<footer class="rodape"></footer>
 
 </html>
