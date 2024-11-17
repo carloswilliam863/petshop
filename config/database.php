@@ -43,6 +43,7 @@ return [
         ],
 
 
+<<<<<<< HEAD
             'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -56,6 +57,21 @@ return [
             'strict' => true,
             'engine' => null,
             ],
+=======
+       'mysql' => [
+    'driver' => 'mysql',
+    'host' => env('DB_HOST', '127.0.0.1'),
+    'port' => env('DB_PORT', '3306'),
+    'database' => env('DB_DATABASE', 'nome_do_banco_local'),
+    'username' => env('DB_USERNAME', 'seu_usuario'),
+    'password' => env('DB_PASSWORD', 'sua_senha'),
+    'charset' => 'utf8mb4',
+    'collation' => 'utf8mb4_unicode_ci',
+    'prefix' => '',
+    'strict' => true,
+    'engine' => null,
+    ],
+>>>>>>> 2fe7042aa57d6d89d9e61c580c76690aa88acb29
 
 
 
@@ -168,3 +184,4 @@ return [
     ],
 
 ];
+
