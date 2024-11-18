@@ -97,7 +97,7 @@
         .content-container {
     display: block; /* Garante um layout de bloco */
    text-align: justify; /* Garante que o texto esteja alinhado à esquerda */
-    position: relative; /* Permite o uso de `left` */
+    position: relative; /* Permite o uso de left */
    margin-right: 930px;
   
 }
