@@ -12,9 +12,9 @@
     <style>
         body {
             position: relative;
-            background: url('{{ asset('images/animais.png') }}') no-repeat center center fixed;
+            background: url('{{ asset('images/welcome.png') }}') no-repeat center center fixed;
             background-size: 105% auto;
-            background-color: pink;
+            background-color: #272829;
             font-family: Arial, sans-serif;
             margin: 0;
             display: flex;
@@ -24,17 +24,6 @@
             overflow: hidden;
         }
 
-        /* Adicionando a sobreposição */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(26, 17, 28, 0.38); /* Ajuste o tom e a transparência conforme necessário */
-            z-index: 1;
-        }
 
         .rodape {
             height: 35px; /* Altura fixa de 10px */
@@ -48,8 +37,7 @@
 
         .header,
         .content-container {
-            padding: 200px
-            width:200px ;
+            padding: 200px;
             position: relative;
             z-index: 2; /* Garante que o texto esteja acima da sobreposição */
         }
@@ -59,12 +47,11 @@
             align-items: center;
             justify-content: space-between;
             width: 80%;
-            padding: 10px 250%;
+            padding: 18px 250%;
             position: fixed;
-            top: 0;
+            top: 0px;
             background-color: #50285b; 
             z-index: 1000;
-            border-radius: 3%;
           
         }
 
@@ -102,32 +89,35 @@
             background-color: #333;
         }
 
+        .menu .login:hover {
+            background-color: #333;
+            border-radius: 10%;
+        }
+
         .content-container {
-    display: flex;
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    max-width: 1200px;
-    width: 100%;
-    z-index: 10;
-    padding: 80px 20px;
-    box-sizing: border-box;
-    position: relative; /* Permite posicionamento dentro da content-container */
+    display: block; /* Garante um layout de bloco */
+   text-align: justify; /* Garante que o texto esteja alinhado à esquerda */
+    position: relative; /* Permite o uso de `left` */
+   margin-right: 930px;
+  
 }
 
 .text-content {
-    flex-basis: 50%;
-    max-width: 800px;
-    text-align: center; /* Centraliza o texto dentro do contêiner */
+    flex-basis: 55%;
+    max-width: 700px;
+    text-align: left; /* Centraliza o texto dentro do contêiner */
+    left: 0px;
 }
 
-/* Ajustando a logo para centralizar dentro da content-container */
-.logo-center {
-    width: 200px; /* Ajuste o tamanho conforme necessário */
-    opacity: 1; /* Ajuste a transparência */
-    display: block; /* Para remover qualquer alinhamento estranho */
-    margin: 0 auto; /* Centraliza a imagem */
-}
-
+.coluna {
+            position: fixed; /* Fixa a coluna no lado esquerdo da tela */
+            top: 0; /* Alinha ao topo */
+            left: 0; /* Alinha à esquerda */
+            height: 100vh; /* Altura total da janela */
+            width: 25px; /* Largura fixa de 15px */
+            background-color: #50285b; /* Cor de fundo */
+            z-index: 1000; /* Garante que a coluna esteja sobre outros elementos */
+        }
                 
     </style>
 </head>
@@ -151,17 +141,18 @@
             <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
             <div class="text-content" style="text-align: center;">
 
-                <h1 style="font-size: 80px; font-weight: bolder; color: #fff; font-family: 'Oswald', sans-serif; letter-spacing: 4px;">
-                    Gatito Petshop
+                <h1 style="font-size: 60px; font-weight: bolder; color: #eee; font-family: 'Oswald', sans-serif; letter-spacing: 4px">
+                    Sejam Bem-Vindos!
                 </h1>
-            
-                <img src="{{ asset('images/gatito.png') }}" alt="Logo Gatito" class="logo-center">
+             
+                
+               
             
             </div>
             
-            <p style="font-size: 1.2rem; color: #ffffff; text-align: justify; font-weight: 900" >
-                No <strong style="font-weight:900; color: #3e0056">Gatito Petshop</strong> garantimos que todos os produtos essenciais para seu pet estejam sempre disponíveis. <br>
-                Com um sistema de <strong style="font-weight:900; color: #3e0056">gestão de estoque</strong>, monitoramos itens como rações, brinquedos e acessórios, para oferecer um atendimento rápido e eficiente. <br>
+            <p style="font-size: 1.2rem; color: #fff; text-align: justify; font-weight: 900" >
+                No <strong style="font-weight:900; color: #e1a0f9; background-color:#3e0056;border-radius:10%; padding:2px;">Gatito Petshop</strong> garantimos que todos os produtos essenciais para seu pet estejam sempre disponíveis. 
+                Com um sistema de <strong style="font-weight:900; color: #e1a0f9;background-color:#3e0056;border-radius:10%; padding:2px;">gestão de estoque</strong>, monitoramos itens como rações, brinquedos e acessórios, para oferecer um atendimento rápido e eficiente. <br>
                 <br> 
                 <p1 style="font-weight:900">Nossa prioridade é a qualidade e a agilidade, mantendo o estoque sempre atualizado para o bem-estar do seu animal.</p1>
             </p>
@@ -170,14 +161,11 @@
             
         </div>
       </div>
-    <!--<div class="navbar-brand">
-        <a href="/">
-            <img src="{{ asset('images/gatito.png') }}" alt="Logo Gatito" class="logo-center">
-        </a>
-    </div>  -->
 
 </body>
 
 <footer class="rodape"></footer>
+
+<footer class ="coluna"></footer>
 
 </html>
