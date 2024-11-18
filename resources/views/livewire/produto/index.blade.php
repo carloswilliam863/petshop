@@ -40,6 +40,7 @@
                                             <h5 class="mb-1 text-lg font-semibold card-title">{{ $product->nome }}</h5>
                                             <p class="mb-1 card-text">Categoria: {{ $product->categoria }}</p>
                                             <p class="card-text">Marca: {{ $product->marca }}</p>
+                                            <p class="card-text">Preço: R$ {{ number_format($product->preco, 2, ',', '.') }}</p>
                                         </div>
 
                                         <!-- Quantidade em Estoque ao final do card -->
