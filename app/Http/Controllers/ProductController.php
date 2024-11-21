@@ -77,12 +77,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nome' => 'string|max:255',
-            'categoria' => 'string|max:255',
-            'preco' => 'numeric',
-            'quantidadeEmEstoque' => 'integer',
-            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
-            'marca' => 'required|string|max:255',
+            'nome' => 'nullable|string|max:255',
+            'categoria' => 'nullable|string|max:255',
+            'preco' => 'nullable|numeric',
+            'quantidadeEmEstoque' => 'nullable|integer',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'marca' => 'nullable|string|max:255',
         ]);
 
         $product = Product::findOrFail($id);
