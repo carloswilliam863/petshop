@@ -42,13 +42,6 @@ class PedidoEntradaController extends Controller
         return PedidoEntradaResource::collection(PedidoEntrada::all());
     }
 
-    public function create()
-{
-    $produtos = Product::all(); // Certifique-se de que a marca está incluída nos produtos
-
-    return view('pedidos.create', compact('produtos'));
-}
-
     // Deletar um Pedido
     public function destroy($id)
         {

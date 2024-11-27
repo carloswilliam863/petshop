@@ -14,7 +14,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/products/count-by-brand', [ProductController::class, 'countByMarca']);
 Route::get('/products/count-by-category', [ProductController::class, 'countByCategory']);
 Route::get('/products/top-quantities', [ProductController::class, 'topQuantities']);
-Route::post('/upload', [ImageController::class, 'store']);
+
 
 
 
@@ -29,17 +29,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/users/{id}', [AuthController::class, 'destroy']);
 
     // Rotas para Produtos
-    Route::get('/products', [ProductController::class, 'indexi']);
+    Route::get('/products', [ProductController::class, 'index']);
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
     Route::get('/products/{id}', [ProductController::class, 'show']);
     Route::match(['patch', 'put'], 'products/{id}', [ProductController::class, 'update']);
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
-    Route::post('/products/{id}/update-price', [ProductController::class, 'atualizarPreco']);
+    
    
     
 
     // Rotas para Clientes
-    Route::get('/clientes', [ClienteController::class, 'indexi']);
+    Route::get('/clientes', [ClienteController::class, 'index']);
     Route::post('/clientes', [ClienteController::class, 'store']);
     Route::get('/clientes/{id}', [ClienteController::class, 'show']);
     Route::match(['patch', 'put'], '/clientes/{id}' ,[ClienteController::class, 'update']);
@@ -54,7 +54,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/pedido-entradas', [PedidoEntradaController::class, 'index']);
     Route::post('/pedido-entradas', [PedidoEntradaController::class, 'store']);
     Route::get('/pedido-entradas/{id}', [PedidoEntradaController::class, 'show']);
-    Route::delete('/pedido-entradas/{id}', [PedidoEntradaController::class, 'destroy']);
+
 
 });
 

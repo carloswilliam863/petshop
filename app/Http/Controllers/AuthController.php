@@ -20,21 +20,26 @@ class AuthController extends Controller
     }
 
     public function register(RegisterRequest $request)
-    {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
-    
-        $token = $user->createToken('auth-token')->plainTextToken;
-        $user->token = $token;
-    
-        $user->addRole(3); // Adiciona o papel de Participante
-    
-        $resource = new UserResource($user);
-        return $resource->response();
-    }
+{
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => bcrypt($request->password)
+    ]);
+
+    $token = $user->createToken('auth-token')->plainTextToken;
+    $user->token = $token;
+
+    $user->addRole(3); // Adiciona o papel de Participante
+
+    $resource = new UserResource($user);
+
+    return response([
+        'user' => $resource,
+        'redirect' => route('produtos') // Redirecionar para produtos
+    ], 201); // Status 201 Created
+}
+
     
 
     public function addRole(string $id, Request $request)
@@ -66,22 +71,26 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request)
-    {
-        $user = User::where('email', $request->email)->first();
+{
+    $user = User::where('email', $request->email)->first();
 
-        if (!$user) {
-            return response(['error' => 'O e-mail informado não está cadastrado.'], 401); //Unauthorized
-        }
-
-        if ($user and Hash::check($request->password, $user->password)) {
-            $token = $user->createToken('auth-token')->plainTextToken;
-            $user->token = $token;
-
-            return new UserResource($user);
-        }
-
-        return response(['error' => 'A senha informada está incorreta.'], 401); //Unauthorized
+    if (!$user) {
+        return response(['error' => 'O e-mail informado não está cadastrado.'], 401); // Unauthorized
     }
+
+    if (Hash::check($request->password, $user->password)) {
+        $token = $user->createToken('auth-token')->plainTextToken;
+        $user->token = $token;
+
+        return response([
+            'user' => new UserResource($user),
+            'redirect' => route('produtos'), // Redirecionar para produtos
+        ], 200);
+    }
+
+    return response(['error' => 'A senha informada está incorreta.'], 401); // Unauthorized
+}
+
 
     public function validateToken(Request $request)
     {

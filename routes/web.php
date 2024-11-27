@@ -5,6 +5,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\PedidoEntradaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VendaController;
+use App\Livewire\Produto\Index;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,9 +22,11 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-    /*Route::view('clientelist', 'clientelist')
+/*Route::view('clientelist', 'clientelist')
     ->middleware(['auth', 'verified'])
     ->name('clientelist');*/
+
+//Route::get('/produtos', Index::class)->name('produtos');
 
 
 

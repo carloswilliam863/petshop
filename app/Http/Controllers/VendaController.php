@@ -23,7 +23,7 @@ class VendaController extends Controller
     // Cria a venda
     $venda = Venda::create([
         'cliente_id' => $request->cliente_id,
-        'total_vendido' => 0,  // Vamos calcular o total depois
+        'total_vendido' => 0,  
     ]);
 
     $totalVendido = 0;

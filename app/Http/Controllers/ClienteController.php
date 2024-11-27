@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ClienteController extends Controller
 {
     // Listar todos os clientes
-    public function indexi()
+    public function index()
     {
         return Cliente::all();
     }
@@ -65,18 +65,6 @@ class ClienteController extends Controller
         Cliente::destroy($id);
         return response()->json(null, 204);
     }
-
-    public function index()
-    {
-        $clientes = Cliente::all(); // Obtém todos os clientes
-        return view('clientes.index', compact('clientes')); // Retorna a view com a lista de clientes
-    }
-
-    public function create()
-{
-    return view('clientes.create');
-}
-
 
     
 }

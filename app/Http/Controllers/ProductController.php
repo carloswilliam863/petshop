@@ -10,16 +10,11 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     // Listar todos os produtos
-    public function indexi()
+    public function index()
     {
-
-
-        // Obtém todos os produtos do banco de dados
         $produtos = Product::all();
 
-        // Retorna os produtos usando o ProductResource para formatá-los
         return ProductResource::collection($produtos);
-        
     }
 
     public function store(Request $request)
@@ -37,27 +32,21 @@ class ProductController extends Controller
 
 
     if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-                // Faz o upload do arquivo para o S3
+            // Faz o upload do arquivo para o S3
             $path = Storage::disk('s3')->put('images', $request->file('imagem'));
 
             // Obtenha a URL do arquivo no S3
             $url = Storage::disk('s3')->url($path);
 
 
-                $data['imagem'] = $url;
+             $data['imagem'] = $url;
          
     }
     
 
     // Criar o produto no banco de dados
     $product = Product::create($data);
-
-   // return response()->json($product, 200);
-    
-    if ($request->wantsJson()) {
-        return response()->json(['message' => 'Produto criado com sucesso!']);
-    }
-    
+ 
     return redirect()->route('produtos')->with('success', 'Produto criado com sucesso!');
     
 }
